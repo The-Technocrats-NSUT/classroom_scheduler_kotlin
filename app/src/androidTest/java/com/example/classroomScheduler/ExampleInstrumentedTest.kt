@@ -1,4 +1,4 @@
-package com.example.classroomschedular
+package com.example.classroomScheduler
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
