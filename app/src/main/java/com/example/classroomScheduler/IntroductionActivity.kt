@@ -1,5 +1,6 @@
 package com.example.classroomScheduler
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,8 +19,17 @@ class IntroductionActivity : AppCompatActivity() {
         }
 
         btn_skip.setOnClickListener {
-            // TODO: "Goes to Login Activity"
+            signInFromIntroActivity()
         }
+    }
+
+    private fun signInFromIntroActivity() {
+        // Creating an intent for signing in
+        val signInActivityIntent = Intent(this, SignInActivity::class.java)
+        startActivity(signInActivityIntent)
+
+        // Removing this Activity from the stack
+        finish()
     }
 
     private fun updateIntroductionScreen(count : Int){
@@ -47,7 +57,10 @@ class IntroductionActivity : AppCompatActivity() {
                 ll_teacher.visibility = View.GONE
                 ll_alarm.visibility = View.GONE
                 ll_student.visibility = View.VISIBLE
-                btn_next.text = "Login"
+                btn_next.text = getString(R.string.login_btn)
+                btn_next.setOnClickListener{
+                    signInFromIntroActivity()
+                }
             }
         }
     }
