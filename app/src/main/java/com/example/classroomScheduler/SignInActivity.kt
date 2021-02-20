@@ -25,8 +25,6 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-    private val RC_SIGN_IN: Int = 123
-    private val TAG = "Sign In Activity Tag"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,14 +57,14 @@ class SignInActivity : AppCompatActivity() {
         val signInIntent = googleSignInClient.signInIntent
 
         //launch the activity
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        startActivityForResult(signInIntent, Companion.RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN)
+        if (requestCode == Companion.RC_SIGN_IN)
         {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try
@@ -75,7 +73,7 @@ class SignInActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)!!
 
                 // Log the success message
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
+                Log.d(Companion.TAG, "firebaseAuthWithGoogle:" + account.id)
 
                 // Calling a function to authenticate the sign in using the token
                 firebaseAuthWithGoogle(account.idToken!!)
@@ -85,7 +83,7 @@ class SignInActivity : AppCompatActivity() {
             {
                 // Google Sign In failed
                 // Log the fail message in
-                Log.w(TAG, "Google Sign-In failed", e)
+                Log.w(Companion.TAG, "Google Sign-In failed", e)
             }
         }
 
@@ -131,5 +129,10 @@ class SignInActivity : AppCompatActivity() {
             signInButton.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
         }
+    }
+
+    companion object {
+        private const val RC_SIGN_IN: Int = 123
+        private const val TAG = "Sign In Activity Tag"
     }
 }
