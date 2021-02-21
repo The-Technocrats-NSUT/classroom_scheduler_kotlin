@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Classroom Schedular</string>
+    <string name="app_name">Classroom Scheduler</string>
+    <string name="login_btn">Login</string>
 </resources>

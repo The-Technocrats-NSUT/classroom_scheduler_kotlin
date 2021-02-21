@@ -1,4 +1,4 @@
-package com.example.classroomschedular
+package com.example.classroomScheduler
 
 import org.junit.Test
 
