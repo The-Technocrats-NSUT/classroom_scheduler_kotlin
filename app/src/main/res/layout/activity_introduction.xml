@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/white"
+    android:background="@color/colorBackground"
     tools:viewBindingIgnore="false"
     tools:context=".IntroductionActivity">
 
@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="SKIP"
+        android:fontFamily="@font/roboto_black_italic"
         android:textColor="#757575"
         android:textSize="15sp"
         android:textStyle="italic"
@@ -54,6 +55,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="Schedule your online classes"
+            android:fontFamily="@font/roboto_bold_condensed"
             android:textColor="#212121"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -66,6 +68,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="This app lets you schedule your classes!"
+            android:fontFamily="@font/roboto_light_italic"
             android:textColor="#757575"
             android:textSize="14sp"
             android:textStyle="italic" />
@@ -98,6 +101,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="Save time!"
+            android:fontFamily="@font/roboto_bold_condensed"
             android:textColor="#212121"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -110,6 +114,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="sample text sample text sample text"
+            android:fontFamily="@font/roboto_light_italic"
             android:textColor="#757575"
             android:textSize="14sp"
             android:textStyle="italic" />
@@ -142,6 +147,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="Smart Learning"
+            android:fontFamily="@font/roboto_bold_condensed"
             android:textColor="#212121"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -154,6 +160,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="sample text sample text sample text"
+            android:fontFamily="@font/roboto_light_italic"
             android:textColor="#757575"
             android:textSize="14sp"
             android:textStyle="italic" />
@@ -186,6 +193,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="Save time!"
+            android:fontFamily="@font/roboto_bold_condensed"
             android:textColor="#212121"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -198,6 +206,7 @@
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="sample text sample text sample text"
+            android:fontFamily="@font/roboto_light_italic"
             android:textColor="#757575"
             android:textSize="14sp"
             android:textStyle="italic" />
@@ -212,6 +221,7 @@
         android:shadowColor="@color/black"
         android:shadowRadius="10.0"
         android:text="NEXT"
+        android:fontFamily="@font/roboto_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
