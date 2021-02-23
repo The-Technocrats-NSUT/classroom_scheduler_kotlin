@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">Classroom Schedular</string>
+    <string name="app_name">Classroom Scheduler</string>
+    <string name="login_btn">Login</string>
+    <string name="the_technocrats_nsut">The Technocrats NSUT</string>
+    <string name="get_started">Get Started</string>
+    <string name="classroom_scheduler">CLASSROOM SCHEDULER</string>
+    <string name="skip">SKIP</string>
+    <string name="schedule_your_online_classes">Schedule your online classes</string>
+    <string name="this_app_lets_you_schedule_your_classes">This app lets you schedule your classes!</string>
+    <string name="save_time">Save time!</string>
+    <string name="sample_text_sample_text_sample_text">sample text sample text sample text</string>
+    <string name="smart_learning">Smart Learning</string>
+    <string name="sample_text_sample_text_sample_text">sample text sample text sample text</string>
+    <string name="save_time">Save time!</string>
+    <string name="sample_text_sample_text_sample_text">sample text sample text sample text</string>
+    <string name="next">NEXT</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_using_your_google_account">Sign In using your google account</string>
+    <string name="sign_in_with_google">SIGN IN WITH GOOGLE</string>
+    <string name="instagram_image">instagram image</string>
+    <string name="facebook_image">facebook image</string>
+    <string name="twitter_image">twitter image</string>
+    <string name="the_technocrats_nsut">The Technocrats NSUT</string>
+    <string name="follow_us">Follow us</string>
 </resources>
