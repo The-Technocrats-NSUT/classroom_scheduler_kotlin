@@ -25,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -40,7 +40,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_italic"
         android:gravity="center"
-        android:text="Sign In using your google account"
+        android:text="@string/sign_in_using_your_google_account"
         android:textColor="#757575"
         android:textSize="16sp"
         android:textStyle="italic"
@@ -78,7 +78,7 @@
             android:layout_marginRight="45dp"
             android:fontFamily="@font/roboto_black"
             android:gravity="center"
-            android:text="SIGN IN WITH GOOGLE"
+            android:text="@string/sign_in_with_google"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -97,7 +97,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_btn_login"
         app:layout_constraintVertical_bias="0.508"
-        android:contentDescription="instagram image" />
+        android:contentDescription="@string/instagram_image" />
 
     <ImageView
         android:id="@+id/iv_youtube"
@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toStartOf="@+id/iv_github"
         app:layout_constraintStart_toEndOf="@+id/iv_linkedIn"
         app:layout_constraintTop_toBottomOf="@+id/ll_btn_login"
-        android:contentDescription="facebook image" />
+        android:contentDescription="@string/facebook_image" />
 
     <ImageView
         android:id="@+id/iv_github"
@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_youtube"
         app:layout_constraintTop_toBottomOf="@+id/ll_btn_login"
-        android:contentDescription="twitter image" />
+        android:contentDescription="@string/twitter_image" />
 
     <TextView
         android:id="@+id/tv_technocrats"
@@ -134,7 +134,7 @@
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/roboto_light_italic"
         android:gravity="center"
-        android:text="The Technocrats NSUT"
+        android:text="@string/the_technocrats_nsut"
         android:textColor="#757575"
         android:textSize="14sp"
         android:textStyle="italic"
@@ -147,7 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Follow us "
+        android:text="@string/follow_us"
         android:textColor="#757575"
         android:textSize="14sp"
         android:textStyle="italic"
