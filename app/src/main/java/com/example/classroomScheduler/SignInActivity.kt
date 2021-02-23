@@ -40,7 +40,7 @@ class SignInActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         // On clicking the sign in button
-        signInButton.setOnClickListener{
+        ll_btn_login.setOnClickListener{
             // calling the sign in method to handle the sign in
             signIn()
         }
@@ -100,7 +100,7 @@ class SignInActivity : AppCompatActivity() {
         // while the authentication process is going on
         // hide the sign in button and
         // show a progress bar
-        signInButton.visibility = View.GONE
+        ll_btn_login.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
 
         // launching a coroutine
@@ -128,7 +128,7 @@ class SignInActivity : AppCompatActivity() {
         }
         else
         {
-            signInButton.visibility = View.VISIBLE
+            ll_btn_login.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
         }
     }

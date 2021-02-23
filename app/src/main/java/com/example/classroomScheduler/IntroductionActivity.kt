@@ -19,7 +19,9 @@ class IntroductionActivity : AppCompatActivity() {
         }
 
         btn_skip.setOnClickListener {
-            signInFromIntroActivity()
+            val intent = Intent(this@IntroductionActivity, SignInActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
