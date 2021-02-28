@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -76,6 +77,7 @@ class SignInActivity : AppCompatActivity() {
 
                 // Log the success message
                 Log.d(Companion.TAG, "firebaseAuthWithGoogle:" + account.id)
+                Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
 
                 // Calling a function to authenticate the sign in using the token
                 firebaseAuthWithGoogle(account.idToken!!)
@@ -85,7 +87,8 @@ class SignInActivity : AppCompatActivity() {
             {
                 // Google Sign In failed
                 // Log the fail message in
-                Log.w(Companion.TAG, "Google Sign-In failed", e)
+                Log.e(Companion.TAG, "Google Sign-In failed", e)
+                Toast.makeText(this, "login failed", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -119,15 +122,11 @@ class SignInActivity : AppCompatActivity() {
 
     private fun updateUI(firebaseUser: FirebaseUser?)
     {
-        if (firebaseUser!=null)
-        {
-            // TODO("Take the user to the next screen. It is set to Main Activity for now")
-            // val mainActivityIntent = Intent(this, MainActivity::class.java)
-            // startActivity(mainActivityIntent)
+        if (firebaseUser!=null) {
+            val hubactivityintent = startActivity(Intent(this, ClassroomActivity::class.java))
             finish()
         }
-        else
-        {
+        else {
             ll_btn_login.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
         }
