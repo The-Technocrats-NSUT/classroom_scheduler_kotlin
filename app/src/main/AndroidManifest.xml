@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ClassroomScheduler">
-        <activity android:name=".ClassroomHubActivity"></activity>
+        <activity android:name=".ClassroomHubActivity" />
         <activity android:name=".ClassroomActivity" />
         <activity android:name=".SignInActivity" />
         <activity
