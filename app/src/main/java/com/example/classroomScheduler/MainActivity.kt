@@ -14,12 +14,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if(isLoggedIn!!){
-            // TODO: Go to Classroom Activity
+            val intent = Intent(this, ClassroomActivity::class.java)
+            startActivity(intent)
         }
 
         btn_getStarted.setOnClickListener {
             val intent = Intent(this, IntroductionActivity::class.java, )
             startActivity(intent)
+            finish()
         }
 
     }

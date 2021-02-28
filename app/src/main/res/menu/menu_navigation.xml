@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_announcement"
+        android:title="Notices"
+        app:cnb_iconColor="@color/colorSecondary"/>
+    <item
+        android:id="@+id/nav_activity"
+        android:icon="@drawable/ic_classroom"
+        android:title="People"
+        app:cnb_iconColor="@color/colorSecondary"/>
+    <item
+        android:id="@+id/nav_calorie_count"
+        android:icon="@drawable/ic_lecture"
+        android:title="Lecture"
+        app:cnb_iconColor="@color/colorSecondary" />
+</menu>
