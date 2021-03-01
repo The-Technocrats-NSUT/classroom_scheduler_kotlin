@@ -3,7 +3,6 @@ package com.example.classroomScheduler
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private var isLoggedIn : Boolean ?= false
