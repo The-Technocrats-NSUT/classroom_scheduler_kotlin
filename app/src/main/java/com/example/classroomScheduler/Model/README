@@ -1,0 +1,3 @@
+Include all the data classes in this package
+These data classes objects will be used to use the fetched data
+Please name all the Models appropriately: like ClassroomActivityModel
