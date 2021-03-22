@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if(isLoggedIn!!){
-            val intent = Intent(this, ClassroomActivity::class.java)
+            val intent = Intent(this, HubListMainActivity::class.java)
             startActivity(intent)
         }
 

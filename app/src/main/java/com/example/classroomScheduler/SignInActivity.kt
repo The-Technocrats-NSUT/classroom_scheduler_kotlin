@@ -123,7 +123,7 @@ class SignInActivity : AppCompatActivity() {
     private fun updateUI(firebaseUser: FirebaseUser?)
     {
         if (firebaseUser!=null) {
-            val hubactivityintent = startActivity(Intent(this, ClassroomActivity::class.java))
+            val hubactivityintent = startActivity(Intent(this, HubListMainActivity::class.java))
             finish()
         }
         else {

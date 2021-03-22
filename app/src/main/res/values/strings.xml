@@ -10,9 +10,6 @@
     <string name="save_time">Save time!</string>
     <string name="sample_text_sample_text_sample_text">sample text sample text sample text</string>
     <string name="smart_learning">Smart Learning</string>
-    <string name="sample_text_sample_text_sample_text">sample text sample text sample text</string>
-    <string name="save_time">Save time!</string>
-    <string name="sample_text_sample_text_sample_text">sample text sample text sample text</string>
     <string name="next">NEXT</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_in_using_your_google_account">Sign In using your google account</string>
@@ -20,6 +17,5 @@
     <string name="instagram_image">instagram image</string>
     <string name="facebook_image">facebook image</string>
     <string name="twitter_image">twitter image</string>
-    <string name="the_technocrats_nsut">The Technocrats NSUT</string>
     <string name="follow_us">Follow us</string>
 </resources>
