@@ -1,21 +1,16 @@
 package com.example.classroomScheduler
 
 import android.app.AlertDialog
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.classroomScheduler.adapters.HubListAdapter
 import com.example.classroomScheduler.adapters.IHubListAdapter
 import com.example.classroomScheduler.model.HubModel
-import com.example.classroomScheduler.repository.HubListDao
 import com.example.classroomScheduler.viewModel.HubListViewModel
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.activity_classroom.*
 
 class HubListMainActivity : AppCompatActivity(), IHubListAdapter {
@@ -73,7 +68,7 @@ class HubListMainActivity : AppCompatActivity(), IHubListAdapter {
 
     override fun onHubClicked(hub: HubModel)
     {
-        val hubLaunchIntent = Intent(this, ClassroomHubActivity::class.java)
+        val hubLaunchIntent = Intent(this, CurrentHubActivity::class.java)
         hubLaunchIntent.putExtra("isAdmin", hub.isAdmin)
         hubLaunchIntent.putExtra("hubID", hub.hubRef)
         startActivity(hubLaunchIntent)
