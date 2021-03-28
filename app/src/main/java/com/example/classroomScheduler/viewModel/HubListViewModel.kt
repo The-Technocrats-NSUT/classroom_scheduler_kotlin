@@ -16,10 +16,13 @@ import kotlinx.coroutines.launch
 class HubListViewModel(application: Application): AndroidViewModel(application) {
     // The data which will be observed
 
-    val hubList : MutableLiveData<ArrayList<HubModel>>
-    val hubListDao = HubListDao()
+    val hubList =  MutableLiveData<ArrayList<HubModel>>()
+    private val hubListDao = HubListDao()
     init {
-        hubList = hubListDao.fetchHubList()
+        viewModelScope.launch {
+
+            hubList.value = hubListDao.fetchHubList()
+        }
     }
 
 }

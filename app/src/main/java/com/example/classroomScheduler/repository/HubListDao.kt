@@ -10,6 +10,8 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import java.lang.Exception
 
 class HubListDao {
     val db = FirebaseFirestore.getInstance()
@@ -19,42 +21,40 @@ class HubListDao {
     val hubsListCollection =
         db.collection("users").document("kaman7580").collection("hubsPresentIn")
 
-    fun fetchHubList(): MutableLiveData<ArrayList<HubModel>> {
+    suspend fun fetchHubList(): ArrayList<HubModel>? = try {
         val hubList = ArrayList<HubModel>()
-        val liveHubData = MutableLiveData<ArrayList<HubModel>>()
-        GlobalScope.launch(Dispatchers.IO) {
-            hubsListCollection.get().addOnSuccessListener { collection ->
 
-                if (collection != null) {
+        hubsListCollection.get().await().map { document ->
 
-                    Log.d(TAG, "Data fetch successful!")
-                    for (document in collection) {
-                        Log.d(TAG, "the document id is ")
-                        val temp = HubModel(document.get("hubName").toString(),
-                                            document.id.toString(),
-                                document.get("isAdmin") as Boolean)
-                        hubList.add(temp)
+            if (document != null) {
 
-//                        hubList.add(document.toObject(HubModel::class.java))
-                    }
+                Log.d(TAG, "Data fetch successful!")
 
-                    liveHubData.value = hubList
-                } else {
-                    Log.d(TAG, "No such document")
-                }
+                    Log.d(TAG, "the document id is ${document.id}")
+                    val temp = HubModel(document.get("hubName").toString(),
+                                        document.id.toString(),
+                            document.get("isAdmin") as Boolean)
+                    hubList.add(temp)
 
-            }.addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
+                     //   hubList.add(document.toObject(HubModel::class.java))
 
-
-            if (hubList.isEmpty()) {
-                Log.d(TAG, "Collection size 0")
             } else {
-                Log.d(TAG, "Collection size not 0")
+                Log.d(TAG, "No such document")
             }
 
         }
-        return liveHubData
+
+
+        if (hubList.isEmpty()) {
+            Log.d(TAG, "Collection size 0")
+        } else {
+            Log.d(TAG, "Collection size not 0")
+        }
+
+        hubList
+    }
+    catch (exception: Exception){
+        Log.d(TAG, "get failed with ", exception)
+        null
     }
 }
