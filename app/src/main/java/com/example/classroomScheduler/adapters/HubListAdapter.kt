@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.classroomScheduler.R
 import com.example.classroomScheduler.model.HubModel
 
-class HubListAdapter(private  val context: Context, private val listener: IHubListAdapter,): RecyclerView.Adapter<HubListAdapter.HubListViewHolder>()
+class HubListAdapter(private  val context: Context, private val listener: IHubListAdapter): RecyclerView.Adapter<HubListAdapter.HubListViewHolder>()
 
 {
     // An array list to contain the list of all the hubs

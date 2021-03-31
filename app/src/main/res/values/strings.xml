@@ -18,4 +18,5 @@
     <string name="facebook_image">facebook image</string>
     <string name="twitter_image">twitter image</string>
     <string name="follow_us">Follow us</string>
+    <string name="share_invitation_code">Share Invitation Code</string>
 </resources>

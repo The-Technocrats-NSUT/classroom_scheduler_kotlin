@@ -18,8 +18,8 @@ class HubListDao {
     private val userEmail = Firebase.auth.currentUser!!.email
     private val atTheRateIndex = userEmail!!.indexOf('@')
     private val userId = userEmail!!.subSequence(0, atTheRateIndex).toString()
-    val hubsListCollection =
-        db.collection("users").document("kaman7580").collection("hubsPresentIn")
+    private val hubsListCollection =
+        db.collection("users").document("userId").collection("hubsPresentIn")
 
     suspend fun fetchHubList(): ArrayList<HubModel>? = try {
         val hubList = ArrayList<HubModel>()
@@ -29,12 +29,12 @@ class HubListDao {
             if (document != null) {
 
                 Log.d(TAG, "Data fetch successful!")
+                Log.d(TAG, "the document id is ${document.id}")
 
-                    Log.d(TAG, "the document id is ${document.id}")
-                    val temp = HubModel(document.get("hubName").toString(),
-                                        document.id.toString(),
-                            document.get("isAdmin") as Boolean)
-                    hubList.add(temp)
+                val temp = HubModel(document.get("hubName").toString(),
+                                    document.id.toString(),
+                        document.get("isAdmin") as Boolean)
+                hubList.add(temp)
 
                      //   hubList.add(document.toObject(HubModel::class.java))
 
