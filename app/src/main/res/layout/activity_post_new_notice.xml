@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Utils.PostNewNotice">
+
+    <EditText
+        android:id="@+id/postInput"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_margin="12dp"
+        android:layout_marginTop="424dp"
+        android:gravity="top"
+        android:hint="@string/notice_text_hint"
+        android:padding="12dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/postNoticeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postInput"
+        android:text="@string/post_notice"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

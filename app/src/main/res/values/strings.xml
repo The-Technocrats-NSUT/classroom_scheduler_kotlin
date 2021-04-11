@@ -19,4 +19,10 @@
     <string name="twitter_image">twitter image</string>
     <string name="follow_us">Follow us</string>
     <string name="share_invitation_code">Share Invitation Code</string>
+    <string name="loren_ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, velit esse cillum dolore eu fugiat nulla pariatur</string>
+    <string name="notices_view_title">Notices</string>
+    <string name="create_new_notice">Create New Notice</string>
+    <string name="people_view_title">People</string>
+    <string name="notice_text_hint">Enter your notice text here...</string>
+    <string name="post_notice">Post Notice</string>
 </resources>

@@ -1,25 +1,21 @@
 package com.example.classroomScheduler.adapters
 
-import android.content.ContentValues.TAG
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.classroomScheduler.R
 import com.example.classroomScheduler.model.HubModel
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.DocumentSnapshot
 
-class HubListAdapter(private  val context: Context, private val listener: IHubListAdapter): RecyclerView.Adapter<HubListAdapter.HubListViewHolder>()
-
+class HubListAdapter(options: FirestoreRecyclerOptions<HubModel>, private val listener: IHubListAdapter):
+        FirestoreRecyclerAdapter<HubModel, HubListAdapter.HubListViewHolder>(options)
 {
-    // An array list to contain the list of all the hubs
-    val hubList = ArrayList<HubModel>()
-
     // The ViewHolder class
-    inner class HubListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    class HubListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     {
         val hubName:TextView = itemView.findViewById(R.id.hub_name)
     }
@@ -34,33 +30,16 @@ class HubListAdapter(private  val context: Context, private val listener: IHubLi
 
         // handle the click for a particular hubView
         hubListView.setOnClickListener {
-            listener.onHubClicked(hubList[hubListViewHolder.adapterPosition])
+            val hubSnapshot = snapshots.getSnapshot(hubListViewHolder.adapterPosition)
+            listener.onHubClicked(hubSnapshot)
         }
 
         // return the viewHolder
         return hubListViewHolder
     }
 
-    override fun onBindViewHolder(holder: HubListViewHolder, position: Int) {
-
-        val currHub = hubList[position]
-        holder.hubName.text = currHub.hubName
-    }
-
-    override fun getItemCount(): Int {
-
-        Log.d(TAG, "List of array is ${hubList.size}")
-        return hubList.size
-    }
-
-    // the update list to be called from
-    fun updateList(newHubList: ArrayList<HubModel>)
-    {
-        hubList.clear()
-        hubList.addAll(newHubList)
-
-        // notify the data set changed to the observer
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: HubListViewHolder, position: Int, model: HubModel) {
+        holder.hubName.text = model.hubName
     }
 
 }
@@ -68,5 +47,5 @@ class HubListAdapter(private  val context: Context, private val listener: IHubLi
 // We need an interface to handle the clicks on the hub item card
 interface IHubListAdapter
 {
-    fun onHubClicked(hub: HubModel)
+    fun onHubClicked(hubId: DocumentSnapshot)
 }

@@ -1,41 +1,45 @@
 package com.example.classroomScheduler.repository
 
-import android.content.ContentValues.TAG
 import android.util.Log
-import com.example.classroomScheduler.model.UserModel
-import com.firebase.ui.auth.data.model.User
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
-import java.lang.Exception
 
-class UserListDao {
-    val db = FirebaseFirestore.getInstance()
+class UserListDao(hubId: String) {
+    private val db = FirebaseFirestore.getInstance()
+    private val userListCollection = db.collection("hubs").document(hubId).collection("people")
 
-     suspend fun fetchUserList( hubId : String): ArrayList<UserModel>? = try {
-        val userList = ArrayList<UserModel>()
-        val requestedUserCollection = db.collection("hubs").document(hubId).collection("people")
-         requestedUserCollection.get().await().map {  userDocument->
-            if (userDocument!=null)
-            {
-                Log.d(TAG, "User document fetch successful")
-                val tempUser = UserModel(userDocument.get("userName").toString(),
-                        userDocument.get("userID").toString(),
-                        userDocument.get("isAdmin") as Boolean,
+    fun fetchUserList(): CollectionReference
+    {
+        return userListCollection
+    }
 
-                        )
-                userList.add(tempUser)
-            }
-             else
-            {
-                Log.d(TAG, "No such User Document exists")
-            }
-         }
+    fun removeUser(hubID: String, userId: String) {
 
-         userList
-     }
-     catch (e:Exception)
-     {
-         Log.d(TAG, "User List get failed with ", e)
-         null
-     }
+        // removing the user from hubs
+        db.collection("hubs").document(hubID).collection("people").document(userId)
+                .delete()
+                .addOnSuccessListener {
+                    Log.d(TAG, "User $userId removed successfully from the Hub")
+                }
+                .addOnFailureListener{exception->
+                    Log.w(TAG,"Error removing user $userId from Hub", exception)
+
+                }
+
+        // removing the hub from user's account
+        db.collection("users").document(userId).collection("hubsPresentIn").document(hubID)
+                .delete()
+                .addOnSuccessListener {
+                    Log.d(TAG, "hub was removed from user's account!")
+                }
+                .addOnFailureListener{exception->
+                    Log.w(TAG, "Error removing hub from user's account", exception)
+
+                }
+    }
+
+    companion object {
+        private const val TAG: String = "UserListDao"
+    }
+
 }

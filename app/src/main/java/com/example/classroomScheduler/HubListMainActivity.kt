@@ -2,52 +2,54 @@ package com.example.classroomScheduler
 
 import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.classroomScheduler.adapters.HubListAdapter
 import com.example.classroomScheduler.adapters.IHubListAdapter
 import com.example.classroomScheduler.model.HubModel
-import com.example.classroomScheduler.viewModel.HubListViewModel
-import kotlinx.android.synthetic.main.activity_classroom.*
+import com.example.classroomScheduler.repository.HubListDao
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.DocumentSnapshot
+//import kotlinx.android.synthetic.main.activity_classroom.*
 
 class HubListMainActivity : AppCompatActivity(), IHubListAdapter {
 
-    lateinit var hubListViewModel: HubListViewModel
-
+    private val TAG = "TAG"
+    private lateinit var mAdapter: HubListAdapter
+    private lateinit var hubListDao: HubListDao
+    private var hubListRecyclerView = findViewById<RecyclerView>(R.id.hubListRecyclerView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_classroom)
+        setContentView(R.layout.activity_hub_list)
 
-        val hubListRecyclerView = findViewById<RecyclerView>(R.id.hubListRecyclerView)
+            val fabNewClassroom = findViewById<FloatingActionButton>(R.id.fab_newClassroom)
 
-        // instantiating the adapter
-        val hubListAdapter = HubListAdapter(this, this)
-
-        // inflating the recycler view
-        hubListRecyclerView.layoutManager = LinearLayoutManager(this)
-        hubListRecyclerView.adapter = hubListAdapter
-
-        // starting the viewmodel
-        hubListViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(HubListViewModel::class.java)
-        hubListViewModel.hubList.observe(this, {hublist->hublist?.let {
-            hubListAdapter.updateList(it)
-            }
-        })
-
-        // TODO:  Add side navigation menu
-
-
-        fab_newClassroom.setOnClickListener {
-            // TODO: OPEN A DIALOG BOX TO ENTER CLASSROOM CODE AND AN OPTION TO CREATE A NEW CLASSROOM
-            val fabBtnOption = getFabBtnOption()
-//            val intent = Intent(this@HubListMainActivity, ClassroomHubActivity::class.java)
-//            startActivity(intent)
+//            fabNewClassroom.setOnClickListener {
+//                // TODO: OPEN A DIALOG BOX TO ENTER CLASSROOM CODE AND AN OPTION TO CREATE A NEW CLASSROOM
+//                val fabBtnOption = getFabBtnOption()
+//                val intent = Intent(this@HubListMainActivity, ClassroomHubActivity::class.java)
+//                startActivity(intent)
+//            }
+            setUpHubListRecyclerView()
         }
 
+    private fun setUpHubListRecyclerView()
+    {
+        hubListDao = HubListDao()
+        val hubCollectionQuery =hubListDao.fetchHubList()
+//      TODO: Add a field "createdAt" in the list of hubs
+//      val hubListQuery = hubCollectionQuery.orderBy("createdAt")
+        val hubListRecyclerViewOptions = FirestoreRecyclerOptions.Builder<HubModel>().setQuery(hubCollectionQuery, HubModel::class.java).build()
+        mAdapter = HubListAdapter(hubListRecyclerViewOptions, this)
+
+        hubListRecyclerView.adapter = mAdapter
+        hubListRecyclerView.layoutManager = LinearLayoutManager(this)
+        Log.d(TAG, "Recycler View Set Up")
     }
 
 
@@ -66,12 +68,32 @@ class HubListMainActivity : AppCompatActivity(), IHubListAdapter {
             return returningValue
     }
 
-    override fun onHubClicked(hub: HubModel)
+    override fun onHubClicked(hubId: DocumentSnapshot)
     {
         val hubLaunchIntent = Intent(this, CurrentHubActivity::class.java)
-        hubLaunchIntent.putExtra("isAdmin", hub.isAdmin)
-        hubLaunchIntent.putExtra("hubID", hub.hubRef)
+        hubLaunchIntent.putExtra("hubID", hubId.get("hubID").toString())
+
+        val adminPrivilege = hubId.getBoolean("isAdmin") as Boolean
+        if (adminPrivilege)
+        {
+            hubLaunchIntent.putExtra("isAdmin", "true")
+        }
+        else
+        {
+            hubLaunchIntent.putExtra("isAdmin", "false")
+        }
+
         startActivity(hubLaunchIntent)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mAdapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mAdapter.stopListening()
     }
 
 }
