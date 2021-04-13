@@ -30,7 +30,7 @@ class UserListAdapter(options: FirestoreRecyclerOptions<UserModel>,
         val userListViewHolder = UserListViewHolder(userListView)
 
         // checking whether the current App user (not the user from user list) is admin or not
-        // if the current user is not an admin, then they will not be having priviledges to remove users from the hub
+        // if the current user is not an admin, then they will not be having privileges to remove users from the hub
         if (!isAdmin)
         {
             userListViewHolder.removeUserBtn.visibility = GONE
@@ -48,7 +48,6 @@ class UserListAdapter(options: FirestoreRecyclerOptions<UserModel>,
 
     override fun onBindViewHolder(holder: UserListViewHolder, position: Int, model: UserModel) {
         holder.userName.text = model.userName
-
     }
 
 

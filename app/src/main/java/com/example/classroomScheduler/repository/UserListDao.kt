@@ -4,19 +4,20 @@ import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class UserListDao(hubId: String) {
+class UserListDao(private val hubID: String) {
+
     private val db = FirebaseFirestore.getInstance()
-    private val userListCollection = db.collection("hubs").document(hubId).collection("people")
+    private val userListCollection = db.collection("hubs").document(hubID).collection("people")
 
     fun fetchUserList(): CollectionReference
     {
         return userListCollection
     }
 
-    fun removeUser(hubID: String, userId: String) {
+    fun removeUser(userId: String) {
 
         // removing the user from hubs
-        db.collection("hubs").document(hubID).collection("people").document(userId)
+       userListCollection.document(userId)
                 .delete()
                 .addOnSuccessListener {
                     Log.d(TAG, "User $userId removed successfully from the Hub")

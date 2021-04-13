@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.item_notice.view.*
 import org.w3c.dom.Text
 
 class NoticesAdapter(options: FirestoreRecyclerOptions<NoticeModel>,
-                    private val isAdmin: Boolean,
-                    private val listener: INoticeListAdapter):
+                    private val listener: INoticeListAdapter,
+                     private val isAdmin: Boolean,):
         FirestoreRecyclerAdapter<NoticeModel, NoticesAdapter.NoticeViewHolder>(options) {
 
         class NoticeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

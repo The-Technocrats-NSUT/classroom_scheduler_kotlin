@@ -25,14 +25,8 @@ class PostNewNotice : AppCompatActivity() {
                 if (input.isNotEmpty())
                 {
                     val currentHubID = intent.getStringExtra("hubID")
-                    noticeDAO = NoticeDao()
-                    if (currentHubID != null) {
-                        noticeDAO.postNotice(input, currentHubID)
-                    }
-                    else
-                    {
-                        Toast.makeText(this, "Invalid hub!", Toast.LENGTH_SHORT).show()
-                    }
+                    noticeDAO = NoticeDao(currentHubID!!)
+                    noticeDAO.postNotice(input)
                     finish()
                 }
                 else

@@ -1,7 +1,8 @@
 package com.example.classroomScheduler.model
 
 class UpcomingModel (
-        val eventText: String = "",
-        val eventTime: String = "",
-        val eventAuthor: String = ""
+        val schedDateString: String = "",
+        val schedTimeString: String = "",
+        val schedTimeLongMS: Long = 0,
+        val title: String = ""
         )

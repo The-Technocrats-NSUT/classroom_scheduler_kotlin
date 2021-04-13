@@ -1,6 +1,9 @@
 package com.example.classroomScheduler
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.classroomScheduler.Utils.MyUtils
@@ -20,16 +23,16 @@ class PeopleFragment : Fragment(R.layout.fragment_people), IUserListAdapter {
 
         // TODO : create fragment transactions
 
-        requireArguments().getBoolean("isAdmin")
+        val isAdmin: Boolean = requireArguments().getBoolean("isAdmin")
+        val hubID : String? = requireArguments().getString("hub1")
         // TODO : Add recycler view adapter and viewModel, pass arguments
-        val isAdmin : Boolean = false
+
+        userListDao = hubID?.let { UserListDao(it) }!!
         setUpPeopleRecyclerView(isAdmin)
     }
 
     private fun setUpPeopleRecyclerView(isAdmin: Boolean) {
 
-        val hubID = "hub1"
-        userListDao = UserListDao(hubID)
         val userListCollection = userListDao.fetchUserList()
         val userListQuery = userListCollection.orderBy("isAdmin").orderBy("userName")
         val userListRecyclerViewOption = FirestoreRecyclerOptions.Builder<UserModel>().setQuery(userListQuery, UserModel::class.java).build()
@@ -40,17 +43,14 @@ class PeopleFragment : Fragment(R.layout.fragment_people), IUserListAdapter {
     }
 
     override fun removeUserBtnListener(user: DocumentSnapshot) {
-        val hubID = "hub1"
-        val userID = MyUtils.getUserId()
-        if (user.get("userID")==userID)
-        {
-            Toast.makeText(context, "Cannot Remove Yourself!", Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
-            userListDao.removeUser(hubID, userID)
-        }
+        val currUserID = MyUtils.getUserId()
 
+        when(val userID = user.getString("userID"))
+        {
+            currUserID -> Toast.makeText(context, "Cannot Remove Yourself!", Toast.LENGTH_SHORT).show()
+            null -> Toast.makeText(context, "Cannot remove null user!", Toast.LENGTH_SHORT).show()
+            else -> userListDao.removeUser(userID)
+        }
     }
 
     override fun onStart() {
@@ -61,5 +61,9 @@ class PeopleFragment : Fragment(R.layout.fragment_people), IUserListAdapter {
     override fun onStop() {
         super.onStop()
         mAdapter.stopListening()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
