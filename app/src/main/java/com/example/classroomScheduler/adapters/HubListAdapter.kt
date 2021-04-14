@@ -48,4 +48,5 @@ class HubListAdapter(options: FirestoreRecyclerOptions<HubModel>, private val li
 interface IHubListAdapter
 {
     fun onHubClicked(hubId: DocumentSnapshot)
+
 }
