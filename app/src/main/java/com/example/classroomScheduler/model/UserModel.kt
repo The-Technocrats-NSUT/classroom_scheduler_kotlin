@@ -1,6 +1,6 @@
 package com.example.classroomScheduler.model
 
-class UserModel (
+data class UserModel (
         val userName: String = "",
         val userID: String = "",
         val isAdmin : Boolean = false,

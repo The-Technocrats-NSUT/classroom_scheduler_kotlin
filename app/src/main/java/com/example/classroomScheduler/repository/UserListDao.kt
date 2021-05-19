@@ -1,10 +1,14 @@
 package com.example.classroomScheduler.repository
 
+import android.os.SystemClock
 import android.util.Log
+import com.example.classroomScheduler.Utils.MyUtils
+import com.example.classroomScheduler.model.HubModel
+import com.example.classroomScheduler.model.UserModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class UserListDao(private val hubID: String) {
+class UserListDao(private val hubID: String, private val hubName: String) {
 
     private val db = FirebaseFirestore.getInstance()
     private val userListCollection = db.collection("hubs").document(hubID).collection("people")
@@ -37,6 +41,24 @@ class UserListDao(private val hubID: String) {
                     Log.w(TAG, "Error removing hub from user's account", exception)
 
                 }
+    }
+
+    fun joinHub() {
+
+        // adding the user to the hub's people collection
+        val newUserName = MyUtils.getUserName()
+        val newUserID = MyUtils.getUserId()
+        val newUser = UserModel(isAdmin = false, userName = newUserName, userID = newUserID)
+        userListCollection.whereEqualTo("userID", newUserID)
+            userListCollection.add(newUser)
+                .addOnFailureListener{
+                    Log.w(TAG, "Could not add user to the hub", it)
+                }
+
+        // adding the hub to user's hubsPresentIn collection
+        val hubToAdd = HubModel(hubName = hubName, createdAt = SystemClock.currentThreadTimeMillis(), isAdmin = false)
+        db.collection("users").document(newUserID).collection("hubsPresentIn").document(hubID)
+                .set(hubToAdd)
     }
 
     companion object {
