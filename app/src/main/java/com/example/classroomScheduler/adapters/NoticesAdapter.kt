@@ -4,17 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.classroomScheduler.R
-import com.example.classroomScheduler.Utils.MyUtils
 import com.example.classroomScheduler.model.NoticeModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
-import kotlinx.android.synthetic.main.item_notice.view.*
-import org.w3c.dom.Text
 
 class NoticesAdapter(options: FirestoreRecyclerOptions<NoticeModel>,
                     private val listener: INoticeListAdapter,
@@ -27,7 +24,7 @@ class NoticesAdapter(options: FirestoreRecyclerOptions<NoticeModel>,
             val noticeAuthor: TextView = itemView.findViewById(R.id.noticeAuthor)
             val noticePostTime: TextView = itemView.findViewById(R.id.noticeTime)
             val noticePostDate: TextView = itemView.findViewById(R.id.noticeDate)
-            val deleteNoticeBtn: Button = itemView.findViewById(R.id.deleteNoticeBtn)
+            val deleteNoticeBtn: ImageView = itemView.findViewById(R.id.deleteNoticeBtn)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeViewHolder {

@@ -1,7 +1,5 @@
 package com.example.classroomScheduler.repository
 
-import android.widget.Toast
-import com.example.classroomScheduler.UpcomingFragment
 import com.example.classroomScheduler.model.UpcomingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,16 +19,12 @@ class UpcomingDao(private val hubID: String) {
                 .addOnSuccessListener {
                     // TODO make a toast when the event is removed
                     // TODO remove the event from the list of scheduled alarms
-//                    Toast.makeText(, "Event Removed", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText, "Event Removed", Toast.LENGTH_SHORT).show()
                 }
     }
 
     fun addUpcomingEvent(event: UpcomingModel)
     {
         upcomingListCollection.add(event)
-        // 
     }
-
-
-
 }

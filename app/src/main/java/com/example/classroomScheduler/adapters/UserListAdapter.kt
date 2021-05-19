@@ -1,10 +1,12 @@
 package com.example.classroomScheduler.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.classroomScheduler.R
@@ -22,7 +24,7 @@ class UserListAdapter(options: FirestoreRecyclerOptions<UserModel>,
     inner class UserListViewHolder(itemView : View): RecyclerView.ViewHolder(itemView)
     {
         val userName : TextView = itemView.findViewById(R.id.user_name)
-        val removeUserBtn : Button = itemView.findViewById(R.id.removeUserBtn)
+        val removeUserBtn : ImageView = itemView.findViewById(R.id.removeUserBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserListViewHolder {
@@ -48,6 +50,7 @@ class UserListAdapter(options: FirestoreRecyclerOptions<UserModel>,
 
     override fun onBindViewHolder(holder: UserListViewHolder, position: Int, model: UserModel) {
         holder.userName.text = model.userName
+//        Log.d("USERLISTADAPTER","onbindviewholder OP" )
     }
 
 

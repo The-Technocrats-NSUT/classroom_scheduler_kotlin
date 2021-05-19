@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".JoinHubActivity">
 
+    <EditText
+        android:id="@+id/joinHubIDTV"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_hub_name_here"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/joinHubBtn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="25sp"
+        android:inputType="text"
+        />
+    <Button
+        android:id="@+id/joinHubBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/join_hub"
+        app:layout_constraintTop_toBottomOf="@id/joinHubIDTV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,11 +23,18 @@
     <string name="notices_view_title">Notices</string>
     <string name="create_new_notice">Create New Notice</string>
     <string name="people_view_title">People</string>
-    <string name="notice_text_hint">Enter your notice text here...</string>
+    <string name="notice_text_hint">Enter your notice text here…</string>
     <string name="post_notice">Post Notice</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_default_schedule">Edit Default Schedule</string>
     <string name="add_upcoming_event">Add Upcoming Event</string>
+    <string name="enter_hub_name_here">Enter Hub Code To Join</string>
+    <string name="join_hub">Join Hub</string>
+    <string name="enter_new_hub_name">Enter New Hub Name</string>
+    <string name="create_hub">Create Hub</string>
+    <string name="people">People</string>
     <string name="upcoming">Upcoming</string>
+    <string name="notices">Notices</string>
+    <string name="delete_notice_button">Delete Notice Button</string>
 </resources>
