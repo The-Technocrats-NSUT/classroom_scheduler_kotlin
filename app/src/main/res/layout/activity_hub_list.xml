@@ -4,8 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassroomActivity">
+    tools:context=".HubListMainActivity"
+    >
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hubListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_hub"
+        android:background="@color/colorBackground"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_newClassroom"
@@ -21,6 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_plus_24dp" />
+        app:srcCompat="@drawable/ic_plus_24dp"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

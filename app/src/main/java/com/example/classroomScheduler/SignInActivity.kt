@@ -60,14 +60,14 @@ class SignInActivity : AppCompatActivity() {
         val signInIntent = googleSignInClient.signInIntent
 
         //launch the activity
-        startActivityForResult(signInIntent, Companion.RC_SIGN_IN)
+        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == Companion.RC_SIGN_IN)
+        if (requestCode == RC_SIGN_IN)
         {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try
@@ -76,7 +76,7 @@ class SignInActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)!!
 
                 // Log the success message
-                Log.d(Companion.TAG, "firebaseAuthWithGoogle:" + account.id)
+                Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
                 Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
 
                 // Calling a function to authenticate the sign in using the token
@@ -87,7 +87,7 @@ class SignInActivity : AppCompatActivity() {
             {
                 // Google Sign In failed
                 // Log the fail message in
-                Log.e(Companion.TAG, "Google Sign-In failed", e)
+                Log.e(TAG, "Google Sign-In failed", e)
                 Toast.makeText(this, "login failed", Toast.LENGTH_SHORT).show()
             }
         }
@@ -123,7 +123,7 @@ class SignInActivity : AppCompatActivity() {
     private fun updateUI(firebaseUser: FirebaseUser?)
     {
         if (firebaseUser!=null) {
-            val hubactivityintent = startActivity(Intent(this, ClassroomActivity::class.java))
+            val hubactivityintent = startActivity(Intent(this, HubListMainActivity::class.java))
             finish()
         }
         else {

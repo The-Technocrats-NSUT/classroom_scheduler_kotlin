@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassroomHubActivity">
-    <FrameLayout
+    tools:context=".CurrentHubActivity">
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fl_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
+    </androidx.fragment.app.FragmentContainerView>
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/bottom_navigationBar"

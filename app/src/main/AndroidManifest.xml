@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ClassroomScheduler">
-        <activity android:name=".ClassroomHubActivity" />
-        <activity android:name=".ClassroomActivity" />
+        <activity android:name=".Utils.PostUpcomingEvent"></activity>
+        <activity android:name=".JoinHubActivity" />
+        <activity android:name=".CreateNewHubActivity" />
+        <activity android:name=".Utils.PostNewNotice" />
+        <activity android:name=".CurrentHubActivity" />
+        <activity android:name=".HubListMainActivity" />
         <activity android:name=".SignInActivity" />
         <activity
             android:name=".IntroductionActivity"
